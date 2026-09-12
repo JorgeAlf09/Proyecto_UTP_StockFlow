@@ -1,0 +1,654 @@
+/* ============================================
+   STOCKFLOW - Sistema Web de Gestión de Almacén
+   Hoja de estilos principal
+   ============================================ */
+
+:root {
+    --color-primario: #1e6fb8;
+    --color-primario-oscuro: #165a96;
+    --color-primario-claro: #e8f1fa;
+    --color-acento: #f4a300;
+    --color-exito: #2e9e5b;
+    --color-error: #d64545;
+    --color-info: #1e6fb8;
+    --color-encabezado-tabla: #2c3e50;
+    --color-texto: #333333;
+    --color-texto-suave: #6b7280;
+    --color-fondo: #f2f4f8;
+    --color-blanco: #ffffff;
+    --color-borde: #d8dde5;
+    --color-hover-fila: #f5f8fc;
+    --radio-borde: 8px;
+    --sombra-suave: 0 1px 3px rgba(0, 0, 0, 0.08);
+    --sombra-media: 0 2px 8px rgba(0, 0, 0, 0.10);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    line-height: 1.5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.contenedor {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+/* ============================================
+   1. ENCABEZADO
+   ============================================ */
+
+.encabezado {
+    background-color: var(--color-blanco);
+    border-bottom: 3px solid var(--color-primario);
+    padding: 14px 0;
+    box-shadow: var(--sombra-suave);
+}
+
+.encabezado .contenedor {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.logo {
+    width: 42px;
+    height: 42px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--color-primario), var(--color-primario-oscuro));
+    color: var(--color-blanco);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.encabezado-titulos h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--color-primario);
+    letter-spacing: 0.5px;
+}
+
+.encabezado-titulos p {
+    font-size: 13px;
+    color: var(--color-texto-suave);
+    margin-top: 1px;
+}
+
+/* ============================================
+   2. ÁREA DE ACCIONES
+   ============================================ */
+
+.barra-acciones {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.buscador {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    flex: 1;
+    max-width: 460px;
+}
+
+.campo-busqueda {
+    flex: 1;
+    min-width: 180px;
+    padding: 10px 14px;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-borde);
+    font-size: 14px;
+    background-color: var(--color-blanco);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.campo-busqueda:focus {
+    border-color: var(--color-primario);
+    box-shadow: 0 0 0 3px rgba(30, 111, 184, 0.15);
+}
+
+/* ============================================
+   BOTONES
+   ============================================ */
+
+.boton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: var(--radio-borde);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.boton:active {
+    transform: scale(0.98);
+}
+
+.boton-primario {
+    background-color: var(--color-primario);
+    color: var(--color-blanco);
+}
+
+.boton-primario:hover {
+    background-color: var(--color-primario-oscuro);
+}
+
+.boton-secundario {
+    background-color: var(--color-blanco);
+    color: var(--color-texto);
+    border: 1px solid var(--color-borde);
+}
+
+.boton-secundario:hover {
+    background-color: var(--color-fondo);
+}
+
+.boton-exito {
+    background-color: var(--color-exito);
+    color: var(--color-blanco);
+}
+
+.boton-exito:hover {
+    background-color: #257a49;
+}
+
+.boton-peligro {
+    background-color: var(--color-error);
+    color: var(--color-blanco);
+}
+
+.boton-peligro:hover {
+    background-color: #b53a3a;
+}
+
+.boton-actualizar {
+    background-color: var(--color-blanco);
+    color: var(--color-primario);
+    border: 1px solid var(--color-primario);
+}
+
+.boton-actualizar:hover {
+    background-color: var(--color-primario-claro);
+}
+
+/* Botones en la tabla */
+.boton-tabla {
+    padding: 6px 12px;
+    font-size: 13px;
+    border-radius: 6px;
+}
+
+.boton-editar {
+    background-color: var(--color-primario-claro);
+    color: var(--color-primario);
+    border: 1px solid #bcd6ee;
+}
+
+.boton-editar:hover {
+    background-color: #d5e4f3;
+}
+
+.boton-eliminar {
+    background-color: #fdf0f0;
+    color: var(--color-error);
+    border: 1px solid #f2c9c9;
+}
+
+.boton-eliminar:hover {
+    background-color: #f7dcdc;
+}
+
+/* ============================================
+   3. TABLA DE PRODUCTOS
+   ============================================ */
+
+.tarjeta {
+    background-color: var(--color-blanco);
+    border-radius: var(--radio-borde);
+    box-shadow: var(--sombra-media);
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.tabla-contenedor {
+    overflow-x: auto;
+}
+
+.tabla-productos {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabla-productos thead th {
+    background-color: var(--color-encabezado-tabla);
+    color: var(--color-blanco);
+    text-align: left;
+    padding: 12px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+}
+
+.tabla-productos tbody td {
+    padding: 12px 14px;
+    border-bottom: 1px solid #eceff3;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+.tabla-productos tbody tr:nth-child(even) {
+    background-color: #fafbfd;
+}
+
+.tabla-productos tbody tr:hover {
+    background-color: var(--color-hover-fila);
+}
+
+.tabla-productos tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.col-acciones {
+    white-space: nowrap;
+}
+
+.col-acciones .boton {
+    margin-right: 4px;
+}
+
+.col-estado {
+    white-space: nowrap;
+}
+
+/* Insignias de estado */
+.insignia {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.insignia-activo {
+    background-color: #e3f3ea;
+    color: var(--color-exito);
+}
+
+.insignia-inactivo {
+    background-color: #ececec;
+    color: var(--color-texto-suave);
+}
+
+.sin-productos {
+    text-align: center;
+    padding: 40px 16px;
+    color: var(--color-texto-suave);
+    font-size: 15px;
+}
+
+.sin-productos .icono {
+    font-size: 32px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* ============================================
+   4. MENSAJES
+   ============================================ */
+
+.mensaje {
+    padding: 12px 16px;
+    border-radius: var(--radio-borde);
+    margin-bottom: 16px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid transparent;
+}
+
+.mensaje-exito {
+    background-color: #e3f3ea;
+    color: #1f6b3f;
+    border-color: #b5dfc6;
+}
+
+.mensaje-error {
+    background-color: #fdf0f0;
+    color: #a53030;
+    border-color: #f2c9c9;
+}
+
+.mensaje-info {
+    background-color: var(--color-primario-claro);
+    color: var(--color-primario-oscuro);
+    border-color: #bcd6ee;
+}
+
+/* Modal de confirmación */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.45);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.overlay.visible {
+    display: flex;
+}
+
+.modal {
+    background-color: var(--color-blanco);
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 400px;
+    padding: 24px 24px 20px;
+    text-align: center;
+}
+
+.modal .icono-pregunta {
+    width: 52px;
+    height: 52px;
+    margin: 0 auto 14px;
+    border-radius: 50%;
+    background-color: #fff4e0;
+    color: var(--color-acento);
+    font-size: 26px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal h3 {
+    font-size: 18px;
+    color: var(--color-texto);
+    margin-bottom: 8px;
+}
+
+.modal p {
+    font-size: 14px;
+    color: var(--color-texto-suave);
+    margin-bottom: 20px;
+}
+
+.modal-acciones {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.modal-acciones .boton {
+    flex: 1;
+}
+
+/* ============================================
+   5. FORMULARIOS
+   ============================================ */
+
+.titulo-pagina {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--color-texto);
+    margin: 24px 0 16px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--color-primario-claro);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.titulo-pagina .volver {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-primario);
+    text-decoration: none;
+    margin-left: auto;
+    background-color: var(--color-primario-claro);
+    padding: 6px 12px;
+    border-radius: 6px;
+}
+
+.titulo-pagina .volver:hover {
+    background-color: #d5e4f3;
+}
+
+.formulario {
+    background-color: var(--color-blanco);
+    border-radius: var(--radio-borde);
+    box-shadow: var(--sombra-media);
+    padding: 24px;
+    max-width: 760px;
+    margin-bottom: 24px;
+}
+
+.formulario-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.campo-completo {
+    grid-column: 1 / -1;
+}
+
+.campo-formulario {
+    display: flex;
+    flex-direction: column;
+}
+
+.campo-formulario label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-texto);
+    margin-bottom: 6px;
+}
+
+.campo-formulario label span {
+    color: var(--color-error);
+}
+
+.campo-formulario input,
+.campo-formulario select,
+.campo-formulario textarea {
+    padding: 10px 12px;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-borde);
+    font-size: 14px;
+    font-family: inherit;
+    background-color: var(--color-blanco);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.campo-formulario input:focus,
+.campo-formulario select:focus,
+.campo-formulario textarea:focus {
+    border-color: var(--color-primario);
+    box-shadow: 0 0 0 3px rgba(30, 111, 184, 0.15);
+}
+
+.campo-formulario textarea {
+    resize: vertical;
+    min-height: 90px;
+}
+
+.campo-formulario input.campo-invalido,
+.campo-formulario select.campo-invalido,
+.campo-formulario textarea.campo-invalido {
+    border-color: var(--color-error);
+    box-shadow: 0 0 0 3px rgba(214, 69, 69, 0.12);
+}
+
+.error-mensaje {
+    display: none;
+    font-size: 12px;
+    color: var(--color-error);
+    margin-top: 5px;
+}
+
+.acciones-formulario {
+    display: flex;
+    gap: 10px;
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px solid #eff1f5;
+}
+
+.acciones-formulario .boton {
+    min-width: 130px;
+}
+
+/* ============================================
+   6. PIE DE PÁGINA
+   ============================================ */
+
+.pie {
+    margin-top: auto;
+    padding: 16px 0;
+    text-align: center;
+    font-size: 13px;
+    color: var(--color-texto-suave);
+    border-top: 1px solid var(--color-borde);
+    background-color: var(--color-blanco);
+}
+
+/* ============================================
+   7. DISEÑO RESPONSIVE (Media Queries)
+   ============================================ */
+
+@media (max-width: 768px) {
+
+    .contenedor {
+        padding: 0 12px;
+    }
+
+    .encabezado-titulos h1 {
+        font-size: 20px;
+    }
+
+    .barra-acciones {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .buscador {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .campo-busqueda {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .botones-acciones-izquierda,
+    .botones-acciones-derecha {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        width: 100%;
+    }
+
+    .botones-acciones-derecha .boton {
+        flex: 1;
+    }
+
+    .formulario-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .acciones-formulario {
+        flex-direction: column;
+    }
+
+    .acciones-formulario .boton {
+        width: 100%;
+    }
+
+    .tarjeta {
+        border-radius: 6px;
+        box-shadow: var(--sombra-suave);
+    }
+
+    .tabla-productos thead th {
+        font-size: 12px;
+        padding: 10px;
+    }
+
+    .tabla-productos tbody td {
+        padding: 10px;
+        font-size: 13px;
+    }
+
+    .boton-tabla {
+        padding: 5px 8px;
+        font-size: 12px;
+    }
+
+    .modal {
+        width: 92%;
+        padding: 20px 16px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .encabezado-titulos h1 {
+        font-size: 18px;
+    }
+
+    .encabezado-titulos p {
+        font-size: 12px;
+    }
+
+    .logo {
+        width: 36px;
+        height: 36px;
+        font-size: 17px;
+    }
+
+    .buscar-boton {
+        flex: 1;
+    }
+
+    .tabla-productos thead th {
+        white-space: normal;
+    }
+}
