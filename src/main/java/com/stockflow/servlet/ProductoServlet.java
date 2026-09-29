@@ -1,6 +1,8 @@
 package com.stockflow.servlet;
 
 import com.stockflow.dao.CategoriaDAO;
+import com.stockflow.dao.IDAO;
+import com.stockflow.dao.IProductoDAO;
 import com.stockflow.dao.ProductoDAO;
 import com.stockflow.model.Categoria;
 import com.stockflow.model.Producto;
@@ -12,8 +14,8 @@ import java.io.IOException;
 import java.util.List;
 
 public class ProductoServlet extends HttpServlet {
-    private ProductoDAO dao;
-    private CategoriaDAO categoriaDao;
+    private IProductoDAO dao;
+    private IDAO<Categoria> categoriaDao;
 
     @Override
     public void init() throws ServletException {
@@ -211,7 +213,7 @@ public class ProductoServlet extends HttpServlet {
     }
 
     private void cargarCategorias(HttpServletRequest request) {
-        List<Categoria> categorias = categoriaDao.listarTodas();
+        List<Categoria> categorias = categoriaDao.listarTodos();
         request.setAttribute("categorias", categorias);
     }
 

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StockFlow - Diagrama de flujo entre vistas</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            background-color: #f2f4f8;
+            color: #333333;
+            margin: 0;
+            padding: 24px;
+        }
+        .tarjeta {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
+            max-width: 980px;
+            margin: 0 auto 24px auto;
+            padding: 24px;
+        }
+        h1 {
+            color: #1e6fb8;
+            font-size: 22px;
+            margin: 0 0 6px 0;
+        }
+        p.sub {
+            color: #6b7280;
+            font-size: 13px;
+            margin: 0 0 18px 0;
+        }
+        .nota {
+            background-color: #fff8e6;
+            border: 1px solid #f0d68a;
+            border-left: 4px solid #f4a300;
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            margin-bottom: 18px;
+        }
+        svg {
+            width: 100%;
+            height: auto;
+            border: 1px solid #d8dde5;
+            border-radius: 8px;
+            background-color: #ffffff;
+        }
+        h2 {
+            font-size: 16px;
+            color: #2c3e50;
+            margin: 22px 0 10px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        table th {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 8px 10px;
+            text-align: left;
+        }
+        table td {
+            padding: 7px 10px;
+            border-bottom: 1px solid #eceff3;
+        }
+        table tr:nth-child(even) {
+            background-color: #fafbfd;
+        }
+        code {
+            background-color: #eef3f8;
+            padding: 1px 5px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="tarjeta">
+        <h1>StockFlow — Flujo entre vistas</h1>
+        <p class="sub">Sistema Web de Gestión de Almacén · Representación de la navegación de la aplicación</p>
+
+        <!-- ================= DIAGRAMA ================= -->
+        <svg viewBox="0 0 960 560" xmlns="http://www.w3.org/2000/svg" role="img"
+             aria-label="Diagrama de flujo entre vistas de StockFlow">
+            <defs>
+                <marker id="flecha" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#1e6fb8"/>
+                </marker>
+                <marker id="flechaRoja" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#d64545"/>
+                </marker>
+            </defs>
+
+            <!-- NODO: index.jsp (pantalla principal) -->
+            <rect x="340" y="30" width="280" height="66" rx="8" fill="#e8f1fa" stroke="#1e6fb8" stroke-width="2"/>
+            <text x="480" y="54" text-anchor="middle" font-family="Segoe UI, Arial" font-size="15" font-weight="700" fill="#165a96">index.jsp</text>
+            <text x="480" y="76" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" fill="#333333">Listado de Productos</text>
+
+            <!-- Nota: acciones que se mantienen en la misma vista -->
+            <text x="480" y="118" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-style="italic" fill="#6b7280">
+                Acciones que se mantienen en esta vista:
+            </text>
+            <text x="480" y="136" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-style="italic" fill="#6b7280">
+                Buscar · Actualizar · Eliminar (modal de confirmación)
+            </text>
+
+            <!-- NODO: registrar.jsp -->
+            <rect x="60" y="330" width="240" height="72" rx="8" fill="#ffffff" stroke="#1e6fb8" stroke-width="2"/>
+            <text x="180" y="356" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="700" fill="#165a96">registrar.jsp</text>
+            <text x="180" y="378" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" fill="#333333">Registrar Producto</text>
+
+            <!-- NODO: editar.jsp -->
+            <rect x="660" y="330" width="240" height="72" rx="8" fill="#ffffff" stroke="#1e6fb8" stroke-width="2"/>
+            <text x="780" y="356" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="700" fill="#165a96">editar.jsp</text>
+            <text x="780" y="378" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" fill="#333333">Editar Producto</text>
+
+            <!-- FLECHA: index → registrar -->
+            <path d="M 340 50 L 250 50 L 250 260 L 180 260 L 180 330" fill="none" stroke="#1e6fb8" stroke-width="1.6" marker-end="url(#flecha)"/>
+            <rect x="170" y="238" width="130" height="40" rx="5" fill="#ffffff" opacity="0.92"/>
+            <text x="235" y="254" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="#1e6fb8">+ Nuevo Producto</text>
+            <text x="235" y="270" text-anchor="middle" font-family="Consolas, monospace" font-size="10" fill="#6b7280">/productos/nuevo</text>
+
+            <!-- FLECHA: index → editar -->
+            <path d="M 620 82 L 710 82 L 710 260 L 780 260 L 780 330" fill="none" stroke="#1e6fb8" stroke-width="1.6" marker-end="url(#flecha)"/>
+            <rect x="700" y="238" width="130" height="40" rx="5" fill="#ffffff" opacity="0.92"/>
+            <text x="765" y="254" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="#1e6fb8">Editar</text>
+            <text x="765" y="270" text-anchor="middle" font-family="Consolas, monospace" font-size="10" fill="#6b7280">/productos/editar</text>
+
+            <!-- FLECHA: registrar → index (retorno) -->
+            <path d="M 60 366 L 20 366 L 20 66 L 340 66" fill="none" stroke="#1e6fb8" stroke-width="1.6" marker-end="url(#flecha)"/>
+            <text transform="rotate(-90 20 210)" x="20" y="210" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" fill="#165a96">Guardar (ok) / Cancelar  ⇒  /productos</text>
+
+            <!-- FLECHA: editar → index (retorno) -->
+            <path d="M 900 366 L 940 366 L 940 66 L 620 66" fill="none" stroke="#1e6fb8" stroke-width="1.6" marker-end="url(#flecha)"/>
+            <text transform="rotate(-90 940 210)" x="940" y="210" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" fill="#165a96">Guardar cambios (ok) / Cancelar  ⇒  /productos</text>
+
+            <!-- BUCLE de validación: registrar -->
+            <path d="M 110 402 C 110 444, 250 444, 250 402" fill="none" stroke="#d64545" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#flechaRoja)"/>
+            <text x="180" y="462" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" fill="#a53030">Validación falla:</text>
+            <text x="180" y="478" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" fill="#a53030">campos obligatorios / código duplicado</text>
+
+            <!-- BUCLE de validación: editar -->
+            <path d="M 710 402 C 710 444, 850 444, 850 402" fill="none" stroke="#d64545" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#flechaRoja)"/>
+            <text x="780" y="462" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" fill="#a53030">Validación falla:</text>
+            <text x="780" y="478" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" fill="#a53030">campos obligatorios / código duplicado</text>
+
+            <!-- Nota inferior -->
+            <text x="480" y="520" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" fill="#6b7280">
+                Todas las transiciones pasan por el Servlet «ProductoServlet» (/productos, /productos/nuevo, /productos/editar, /productos/eliminar, /productos/buscar)
+            </text>
+        </svg>
+
+        <!-- ================= EQUIVALENCIA NAVIGATION RULES ================= -->
+        <h2>Equivalencia con Navigation Rules (faces-config.xml)</h2>
+        <p style="font-size:13px; color:#6b7280;">
+            Las navegaciones de StockFlow expresadas en el formato de <code>faces-config.xml</code>:
+        </p>
+        <table>
+            <thead>
+                <tr>
+                    <th><code>from-view-id</code></th>
+                    <th>Acción (outcome)</th>
+                    <th><code>to-view-id</code></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>/index.jsp</td><td>nuevo</td><td>/registrar.jsp</td></tr>
+                <tr><td>/index.jsp</td><td>editar</td><td>/editar.jsp</td></tr>
+                <tr><td>/index.jsp</td><td>buscar</td><td>/index.jsp</td></tr>
+                <tr><td>/index.jsp</td><td>actualizar</td><td>/index.jsp</td></tr>
+                <tr><td>/index.jsp</td><td>eliminar</td><td>/index.jsp</td></tr>
+                <tr><td>/registrar.jsp</td><td>guardar (correcto)</td><td>/index.jsp</td></tr>
+                <tr><td>/registrar.jsp</td><td>cancelar</td><td>/index.jsp</td></tr>
+                <tr><td>/registrar.jsp</td><td>validación falla</td><td>/registrar.jsp</td></tr>
+                <tr><td>/editar.jsp</td><td>guardar (correcto)</td><td>/index.jsp</td></tr>
+                <tr><td>/editar.jsp</td><td>cancelar</td><td>/index.jsp</td></tr>
+                <tr><td>/editar.jsp</td><td>validación falla</td><td>/editar.jsp</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

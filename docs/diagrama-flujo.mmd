@@ -1,0 +1,42 @@
+# StockFlow — Flujo entre vistas
+
+> Representación del flujo de navegación del sistema StockFlow.
+> Este diagrama se renderiza automáticamente en GitHub (y en https://mermaid.live).
+
+```mermaid
+flowchart TD
+    A["index.jsp<br/><small>Listado de Productos</small>"]
+    B["registrar.jsp<br/><small>Registrar Producto</small>"]
+    C["editar.jsp<br/><small>Editar Producto</small>"]
+
+    A -->|"+ Nuevo Producto (/productos/nuevo)"| B
+    A -->|"Editar (/productos/editar)"| C
+    A -->|"Buscar (/productos/buscar) · Actualizar (/productos) · Eliminar (/productos/eliminar)"| A
+
+    B -->|"Guardar correcto (/productos)"| A
+    B -->|"Cancelar"| A
+    B -.->|"Error: campos obligatorios o código duplicado"| B
+
+    C -->|"Guardar correcto (/productos)"| A
+    C -->|"Cancelar"| A
+    C -.->|"Error: campos obligatorios o código duplicado"| C
+```
+
+## Equivalencia con Navigation Rules (faces-config.xml)
+
+| `from-view-id` | Acción (outcome)        | `to-view-id` |
+|----------------|--------------------------|--------------|
+| /index.jsp     | nuevo                    | /registrar.jsp |
+| /index.jsp     | editar                   | /editar.jsp    |
+| /index.jsp     | buscar                   | /index.jsp     |
+| /index.jsp     | actualizar               | /index.jsp     |
+| /index.jsp     | eliminar                 | /index.jsp     |
+| /registrar.jsp | guardar (correcto)       | /index.jsp     |
+| /registrar.jsp | cancelar                 | /index.jsp     |
+| /registrar.jsp | validación falla         | /registrar.jsp |
+| /editar.jsp    | guardar (correcto)       | /index.jsp     |
+| /editar.jsp    | cancelar                 | /index.jsp     |
+| /editar.jsp    | validación falla         | /editar.jsp    |
+
+> Nota: StockFlow usa Servlets + JSP (no JSF), por lo que la navegación real la controla
+> `ProductoServlet`. Las rutas son: `index.jsp` (listado), `registrar.jsp` (nuevo) y `editar.jsp` (edición).
